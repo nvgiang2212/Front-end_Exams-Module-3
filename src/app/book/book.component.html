@@ -1,0 +1,38 @@
+<h2>Simple Blog</h2>
+
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>
+      Title
+      <br>
+      <input type="text" formControlName="title">
+    </label>
+  </div>
+  <div *ngIf="bookForm.get('title').invalid && bookForm.get('title').touched" style="color: red">
+    Title is required and min length is 10
+  </div>
+  <div>
+    <label>
+      body
+      <br>
+      <textarea formControlName="body" cols="30" rows="10"></textarea>
+    </label>
+  </div>
+  <div *ngIf="bookForm.get('body').invalid && bookForm.get('body').touched" style="color: red">
+    Body is required and min length is 10
+  </div>
+  <button type="submit">Submit</button>
+</form>
+
+<ul>
+  <li *ngFor="let books of bookList; index as i">
+    <h3>
+      <a [routerLink]="['/book', books.id]">
+        Post Id: {{books.id}} - {{books.title}}
+      </a>
+    </h3>
+    <a [routerLink]="['/book', books.id, 'edit']">Edit</a>
+
+    <button (click)="deleteBook(i)">Delete</button>
+  </li>
+</ul>
