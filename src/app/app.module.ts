@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { DetailBooksComponent } from './detail-books/detail-books.component';
 import { EditBooksComponent } from './edit-books/edit-books.component';
 import { BookComponent } from './book/book.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { BookAddComponent } from './book-add/book-add.component';
 
@@ -22,7 +22,8 @@ import { BookAddComponent } from './book-add/book-add.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
