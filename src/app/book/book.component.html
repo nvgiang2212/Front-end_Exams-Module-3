@@ -1,5 +1,3 @@
-<h2>Simple Blog</h2>
-
 <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
   <div>
     <label>
@@ -13,26 +11,44 @@
   </div>
   <div>
     <label>
-      body
+      Author:
       <br>
-      <textarea formControlName="body" cols="30" rows="10"></textarea>
+      <input type="text" formControlName="author">
     </label>
   </div>
-  <div *ngIf="bookForm.get('body').invalid && bookForm.get('body').touched" style="color: red">
-    Body is required and min length is 10
+  <div *ngIf="bookForm.get('author').invalid && bookForm.get('author').touched" style="color: red">
+    Author is required and min length is 5
   </div>
-  <button type="submit">Submit</button>
+  <div>
+    <label>
+      Description
+      <br>
+      <textarea formControlName="description" cols="30" rows="10"></textarea>
+    </label>
+  </div>
+  <div *ngIf="bookForm.get('author').invalid && bookForm.get('author').touched" style="color: red">
+    Author is required and min length is 10
+  </div>
+  <button type="submit">Add Book</button>
 </form>
 
-<ul>
-  <li *ngFor="let books of bookList; index as i">
-    <h3>
-      <a [routerLink]="['/book', books.id]">
-        Post Id: {{books.id}} - {{books.title}}
-      </a>
-    </h3>
-    <a [routerLink]="['/book', books.id, 'edit']">Edit</a>
+<table>
+  <td>ID</td>
+  <td>Title</td>
+  <td>Author</td>
+  <td>...</td>
+  <tr *ngFor="let books of bookList; index as i">
+    <td>
+        {{books.id}}
+    </td>
+    <td>
+      <a [routerLink]="['/book', books.id]">{{books.title}}</a>
+    </td>
+    <td>{{books.author}}</td>
+    <td>
+      <a [routerLink]="['/book', books.id, 'edit']"><button>Edit</button></a>
+      <button (click)="deleteBook(i)">Delete</button>
+    </td>
 
-    <button (click)="deleteBook(i)">Delete</button>
-  </li>
-</ul>
+  </tr>
+</table>

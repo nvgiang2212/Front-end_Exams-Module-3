@@ -1,1 +1,15 @@
-<p>detail-books works!</p>
+<div *ngIf="book; else nothing" style="text-align: center">
+  <h3>
+    {{book.title}}
+  </h3>
+  <h4>
+    {{book.author}}
+  </h4>
+  <h4>
+    {{book.description}}
+  </h4>
+</div>
+
+<ng-template #nothing style="text-align: center">
+  <p>Nothing to show</p>
+</ng-template>
